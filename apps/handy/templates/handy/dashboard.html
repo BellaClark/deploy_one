@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col s3">
+        <h3>Welcome {{ user.first_name }}</h3>
+        </div>
+
+        <div class="col s3">
+        <a href="/log_off">Logout</a>
+        </div>
+
+        <div class="col s3 offset-s3">
+            <a href="/addJob">Add A Job</a>
+        </div>
+    </div>
+
+    <!-- ALL JOBS -->
+    <div class="row">
+        <div class="col s6" style="margin:50px;">
+            <table>
+                <thead>
+                <tr>
+                    <th>Job</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for j in jobs %}
+                <tr>
+                    <td>{{j.title}}</td>
+                    <td>{{j.description}}</td>
+                    <td>
+                        <a href="/view/{{ j.id }}">View</a> 
+                        <a href="/add_to_my_jobs/{{ j.id }}">add</a> 
+                        {% if j.user == user %}
+                        <a href="/edit/{{ j.id }}">edit</a> 
+                        <a href="/delete_job/{{ j.id }}">cancel</a> 
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- MY JOBS -->
+        <div class="col s4" style="margin:50px;">
+            <table>
+                <thead>
+                <tr>
+                    <th>My Jobs</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for job in my_jobs %}
+                <tr>
+                    <td>{{ job.title }}</td>
+                    <td>
+                        <a href="/view/{{ j.id }}">View</a> 
+                        <a href="/delete_myjob/{{ job.id }}">Done</a> 
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

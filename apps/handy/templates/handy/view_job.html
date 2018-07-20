@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+</head>
+<body style="padding:20px;">
+    <div class="row">
+        <div class="col s3">
+            <h3>{{ job.title }}</h3>
+        </div>
+        <div class="col s3 offset-s4">
+            <a href="/back" style="padding:50px;">Back</a>
+            <a href="/log_off" style="padding:50px;">Logout</a>
+        </div>
+    </div>
+
+    <div style="border:2px solid black; width:400px">
+        <p>{{ job.description }}</p>
+        <p>Location: {{ job.location }}</p>
+        <p>Posted by: {{ job.user.first_name }} {{ job.user.last_name }}</p>
+        <p>Posted on: {{ job.created_at }}</p>
+    </div>
+    <a href="/add_to_my_jobs/{{ job.id }}">Add To My Jobs</a>
+</body>
+</html>
